@@ -68,14 +68,13 @@ class Album
   end
 
   def self.find_by_id(id)
-    sql = "SELECT * FROM artists
+    sql = "SELECT * FROM albums
     WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
-    artist_hash = results.first
-    artist = Artist.new(artist_hash)
-    return artist
+    album_hash = results.first
+    album = Album.new(album_hash)
+    return album
   end
-
 end
