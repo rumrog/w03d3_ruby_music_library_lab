@@ -15,12 +15,20 @@ SqlRunner.run "SELECT * FROM albums"
 # Hollywood's Bleeding + Stoney ‡ 	Post Malone 
 
 artist1 = Artist.new({"name" => "Tom Walker"})
+artist1_id = artist1.save
 artist2 = Artist.new({"name" => "Billie Eilish"})
 artist3 = Artist.new({"name" => "Lewis Capaldi"})
 artist4 = Artist.new({"name" => "Ed Sheeran"})
 artist5 = Artist.new({"name" => "Post Malone"})
 
+album1 = Album.new({
+    "title" => "What a Time to Be Alive",
+    "genre" => "Rock",
+    "artist_id" => artist1_id
+})
+
 puts artist1.save
+puts album1.save
 
 binding.pry
 nil
