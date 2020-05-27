@@ -46,6 +46,7 @@ class Album
   end
   
   def self.find_albums_by_artist(artist_name)
+    # List all the albums by an artist
     artist_id = Artist.find(artist_name).id
     sql = "SELECT * FROM albums
     WHERE artist_id = $1"
@@ -54,5 +55,27 @@ class Album
     album_array = returned_array.map{|album_hash| Album.new(album_hash)}
     return album_array
   end
-  
+
+  def self.find(title)
+    sql = "SELECT * FROM albums
+    WHERE title = $1"
+    values = [title]
+    results = SqlRunner.run(sql, values)
+    return nil if results.first() == nil
+    album_hash = results.first
+    album = Album.new(album_hash)
+    return album
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM artists
+    WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    return nil if results.first() == nil
+    artist_hash = results.first
+    artist = Artist.new(artist_hash)
+    return artist
+  end
+
 end

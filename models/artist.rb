@@ -51,5 +51,23 @@ class Artist
     artist = Artist.new(artist_hash)
     return artist
   end
+  
+  def self.find_by_id(id)
+    sql = "SELECT * FROM artists
+    WHERE id = $1"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    return nil if results.first() == nil
+    artist_hash = results.first
+    artist = Artist.new(artist_hash)
+    return artist
+  end
 
+  def self.get_artist_for_album(album_title)
+    # Get the artist for a particular album
+    album = Album.find(album_title)
+    album_artist_id = album.artist_id
+    return Artist.find_by_id(album_artist_id).name
+  end
+  
 end
