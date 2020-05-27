@@ -6,6 +6,8 @@ require_relative('sql_runner')
 
 SqlRunner.run "SELECT * FROM albums"
 
+Album.delete_all
+Artist.delete_all
 
 # 2019
 # What a Time to Be Alive ‡ 	Tom Walker
@@ -26,6 +28,7 @@ album1 = Album.new({
     "genre" => "Rock",
     "artist_id" => artist1_id
 })
+album1.save
 
 # puts artist1.save
 # puts album1.save

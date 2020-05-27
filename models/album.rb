@@ -32,5 +32,18 @@ class Album
     @id = id_string.to_i
     return @id
   end
+
+  def self.list_all
+    sql = "SELECT * FROM albums"
+    returned_array = SqlRunner.run(sql)
+    album_array = returned_array.map{|album_hash| Album.new(album_hash)}
+    return album_array
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
+  end
+  
   
 end
