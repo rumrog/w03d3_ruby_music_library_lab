@@ -28,5 +28,11 @@ class Artist
     @id = id_string.to_i
     return @id
   end
-  
+
+  def self.list_all
+    sql = "SELECT * FROM artists"
+    returned_array = SqlRunner.run(sql)
+    artist_array = returned_array.map{|artist_hash| Artist.new(artist_hash)}
+    return artist_array
+  end
 end

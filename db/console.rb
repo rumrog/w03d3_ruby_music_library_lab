@@ -27,8 +27,8 @@ album1 = Album.new({
     "artist_id" => artist1_id
 })
 
-puts artist1.save
-puts album1.save
+# puts artist1.save
+# puts album1.save
 
 binding.pry
 nil
